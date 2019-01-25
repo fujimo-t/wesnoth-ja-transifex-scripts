@@ -1,0 +1,1 @@
+# Wesnoth日本語翻訳のTransifex管理用スクリプト
