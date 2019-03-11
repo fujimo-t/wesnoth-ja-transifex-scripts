@@ -40,12 +40,6 @@ if [ ! -d .tx ]; then
   tx init --token=${TX_TOKEN} --force --no-interactive
   echo "リモートプロジェクトを設定"
   tx config mapping-remote https://www.transifex.com/projects/p/${TX_PROJECT}/
-  
-  echo 'ローカルプロジェクトに翻訳テンプレートファイルパスを設定'
-  for RESOURCE in ${WESNOTH_RESOURCES}
-  do
-    tx config mapping -r ${TX_PROJECT}.${RESOURCE} --source-lang en --type PO --source-file pot/${RESOURCE}.pot --expression "translations/${TX_PROJECT}.${RESOURCE}/<lang>.po" --execute
-  done
 fi
 
 echo "リモートプロジェクトからpoをバックアップ"
@@ -61,6 +55,12 @@ do
   wget -N https://raw.githubusercontent.com/wesnoth/wesnoth/1.14/po/${RESOURCE}/${RESOURCE}.pot
 done
 cd ../
+
+echo 'ローカルプロジェクトに翻訳テンプレートファイルパスを設定'
+for RESOURCE in ${WESNOTH_RESOURCES}
+do
+  tx config mapping -r ${TX_PROJECT}.${RESOURCE} --source-lang en --type PO --source-file pot/${RESOURCE}.pot --expression "translations/${TX_PROJECT}.${RESOURCE}/<lang>.po" --execute
+done
 
 echo 'リモートプロジェクトにpotの変更を適用'
 tx push -s
