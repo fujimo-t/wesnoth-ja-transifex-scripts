@@ -35,7 +35,7 @@ WESNOTH_RESOURCES="wesnoth \
                    wesnoth-utbs"
 TX_PROJECT="wesnoth114"
 
- if [ ! -d .tx ]; then
+if [ ! -d .tx ]; then
   echo 'ローカルプロジェクトを初期化'
   tx init --token=${TX_TOKEN} --force --no-interactive
   echo "リモートプロジェクトを設定"
