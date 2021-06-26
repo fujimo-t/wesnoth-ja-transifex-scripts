@@ -3,37 +3,7 @@
 set -eu
 
 source tx_token.sh
-
-WESNOTH_RESOURCES="wesnoth \
-                   wesnoth-ai \
-                   wesnoth-anl \
-                   wesnoth-aoi \
-                   wesnoth-did \
-                   wesnoth-dm \
-                   wesnoth-dw \
-                   wesnoth-editor \
-                   wesnoth-ei \
-                   wesnoth-help \
-                   wesnoth-httt \
-                   wesnoth-l \
-                   wesnoth-lib \
-                   wesnoth-low \
-                   wesnoth-manpages \
-                   wesnoth-manual \
-                   wesnoth-multiplayer \
-                   wesnoth-nr \
-                   wesnoth-sof \
-                   wesnoth-sota \
-                   wesnoth-sotbe \
-                   wesnoth-tb \
-                   wesnoth-test \
-                   wesnoth-thot \
-                   wesnoth-trow \
-                   wesnoth-tsg \
-                   wesnoth-tutorial \
-                   wesnoth-units \
-                   wesnoth-utbs"
-TX_PROJECT="wesnoth114"
+source common_variables.sh
 
 if [ ! -d .tx ]; then
   echo 'ローカルプロジェクトを初期化'
@@ -52,7 +22,7 @@ fi
 cd pot
 for RESOURCE in ${WESNOTH_RESOURCES}
 do
-  wget -N https://raw.githubusercontent.com/wesnoth/wesnoth/1.14/po/${RESOURCE}/${RESOURCE}.pot
+  wget -N https://raw.githubusercontent.com/wesnoth/wesnoth/1.16/po/${RESOURCE}/${RESOURCE}.pot
 done
 cd ../
 
